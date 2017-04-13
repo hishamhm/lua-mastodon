@@ -436,6 +436,7 @@ function Mastodon:log_in(options)
       return nil, "Invalid arguments given. username and password or code are required."
    end
 
+   params.scope = table.concat(options.scopes, ' ')
    params.client_id = self.client_id
    params.client_secret = self.client_secret
    
@@ -623,6 +624,7 @@ end
 -- 
 -- Returns a toot dict with the new status.
 function Mastodon:status_post(status, options)
+   options = options or {}
    options.status = status
    options.visibility = options.visibility or ""
 
@@ -648,7 +650,7 @@ function Mastodon:status_post(status, options)
       options.media_ids = media_ids_proper
    end
    
-   local params = generate_params(options)
+   local params = generate_params(options, {})
    return api_request(self, "POST", "/api/v1/statuses", params)
 end
 
