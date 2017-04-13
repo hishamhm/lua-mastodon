@@ -4,7 +4,7 @@ source = {
    url = "git+https://github.com/hishamhm/lua-mastodon.git"
 }
 description = {
-   detailed = "A Lua API for [Mastodon](https://mastodon.social) an open source federated social network.",
+   detailed = "A Lua API for Mastodon, an open source federated social network.",
    homepage = "https://github.com/hishamhm/lua-mastodon",
    license = "MIT"
 }
