@@ -343,7 +343,6 @@ local function api_request(self, method, endpoint, params, files, do_ratelimitin
          return nil, "Invalid method " .. tostring(method)
       end
       -- FIXME lua-requests does not support 'files' yet
-print(formencode(params))
       local ok, response_object = pcall(requests[method:lower()], { url = self.api_base_url .. endpoint, data = formencode(params), headers = headers, files = files, timeout = self.request_timeout })
       if not ok then
          return nil, "Could not complete request: " .. tostring(response_object)
@@ -365,7 +364,7 @@ print(formencode(params))
       if response_object.status_code == 500 then
          return nil, "General API problem"
       end
-print(response_object.text)
+
       local json_err
       response, json_err = response_object.json()
       if not response then
