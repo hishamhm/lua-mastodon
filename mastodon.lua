@@ -17,8 +17,6 @@ local date = require("date")
 local mimetypes = require("mimetypes")
 local mimedb = mimetypes.copy()
 
-local mm = require("mm")
-
 local DEFAULT_BASE_URL = "https://mastodon.social"
 local DEFAULT_TIMEOUT = 300
 
@@ -102,8 +100,6 @@ function mastodon.create_app(options)
    if json_response.error then
       return nil, json_response.error
    end
-
-mm(json_response)
    
    if to_file then
       local secret_file = io.open(to_file, "w")
