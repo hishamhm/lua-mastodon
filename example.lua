@@ -13,6 +13,8 @@ if lfs.attributes("secrets.lua") then
 end
 
 if not lfs.attributes("clientcred.txt") then
+   print("No client credentials locally stored yet.")
+   print("Will try to register app in server...")
    local id, err = mastodon.create_app {
       client_name = "Lua Test",
       scopes= { "read", "write" },
@@ -21,7 +23,6 @@ if not lfs.attributes("clientcred.txt") then
    }
    if id then
       print("Successfully registered app - got ID " .. id)
-      os.exit(0)
    else
       print("Failed registering app in server :( - error: " .. err)
       os.exit(1)
@@ -32,12 +33,16 @@ local mclient = mastodon.new {
    client_id = "clientcred.txt",
    api_base_url = instance_url
 }
+
+print("Logging in...")
+
 local access, err = mclient:log_in {
    username = user_name,
    password = user_password,
    scopes = { "read", "write" },
    to_file = "usercred.txt"
 }
+
 if not access then
    print("Login failed :( - error: " .. err)
    os.exit(1)
@@ -45,6 +50,10 @@ end
 
 print("Logged in! :)")
 
-local ok = mclient:toot(arg[1] or "Toot toot from Lua!")
-print(ok)
+local toot = arg[1] or "Toot toot from Lua!"
+
+print("Tooting!...")
+
+local result = mclient:toot(toot)
+
 os.exit(0)
