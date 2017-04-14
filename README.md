@@ -1,15 +1,14 @@
 #lua-mastodon
 
-A Lua API for [Mastodon](https://mastodon.social) an open source federated social network.
+A Lua API for [Mastodon](https://mastodon.social), a FOSS federated social network.
 
-This as a work-in-progress.
+This as a work-in-progress, but you can already toot with it. :)
 
 ## TODO
 
-* Fix login (it's returning only the 'read' scope)
-* Testing
 * Media posts
 * Streaming API
+* Tests
 
 ## Credits
 
