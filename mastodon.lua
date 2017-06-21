@@ -550,11 +550,11 @@ function Mastodon:account_statuses(id, options)
 end
 
 function Mastodon:account_following(id)
-   return api_request(self, "GET", "/api/v1/statuses/" .. tostring(id) .. "/following")
+   return api_request(self, "GET", "/api/v1/accounts/" .. tostring(id) .. "/following")
 end
 
 function Mastodon:account_followers(id)
-   return api_request(self, "GET", "/api/v1/statuses/" .. tostring(id) .. "/followers")
+   return api_request(self, "GET", "/api/v1/accounts/" .. tostring(id) .. "/followers")
 end
 
 function Mastodon:account_relationships(id)
